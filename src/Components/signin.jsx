@@ -1,6 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import { makeStyles } from '@mui/styles';
 import { Paper, Box, Button, TextField, Divider, InputAdornment, IconButton, FormControl } from "@mui/material";
+const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
+const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 const useStyles = makeStyles({
     signinpaper: {
         width: '25vw',
@@ -71,7 +74,7 @@ const useStyles = makeStyles({
         height: '15%',
         display: 'flex',
         flexDirection: "column",
-        marginTop: '5px'
+        marginTop: '10px'
     },
 
     text: {
@@ -86,7 +89,6 @@ const useStyles = makeStyles({
     forgotpasswordBox: {
         width: '100%',
         height: '12px',
-        textAlign: 'left',
         border: '0px solid red',
         // color: #9D9D9D;
     },
@@ -96,8 +98,7 @@ const useStyles = makeStyles({
         color: '#9D9D9D !important',
         textAlign: 'right',
         border: '0px solid red',
-        marginLeft: '196px',
-        marginBottom: '5px'
+
         // color: #9D9D9D;
     },
     loginBox: {
@@ -149,6 +150,57 @@ const useStyles = makeStyles({
 });
 function Signin(props) {
     const classes = useStyles()
+    const [signinObj, setSigninobj] = useState({ email: "", password: "" });
+    const [regexObj, setRegexObj] = useState({ emailBorder: false, emailHelper: "", passwordBorder: false, passwordHelper: "" })
+    const takingEmail = (event) => {
+        // setSigninobj({ email: event.target.value })
+
+        setSigninobj(prevState => ({
+            ...prevState,
+            email: event.target.value
+        }))
+        console.log(signinObj)
+    }
+    const takingPassword = (event) => {
+        // setSigninobj({ password: event.target.value });
+        setSigninobj(prevState => ({
+            ...prevState,
+            password: event.target.value
+        }))
+        console.log(signinObj)
+    }
+    const submit = () => {
+        let emailTest = emailRegex.test(signinObj.email);
+        let passwordTest = passwordRegex.test(signinObj.password);
+        if (emailTest === false) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                emailBorder: true,
+                emailHelper: "Enter Valid Email"
+            }))
+        }
+        else if (emailTest === true) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                emailBorder: false,
+                emailHelper: ""
+            }))
+        }
+        if (passwordTest === false) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                passwordBorder: true,
+                passwordHelper: "Enter Valid Password"
+            }))
+        }
+        else if (passwordTest === true) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                passwordBorder: false,
+                passwordHelper: ""
+            }))
+        }
+    }
     const toggling = () => {
         props.signin()
     }
@@ -162,24 +214,15 @@ function Signin(props) {
                 </Box>
                 <Box className={classes.email}>
                     <span className={classes.text}>Email id</span>
-                    <TextField className={classes.emailtextField} variant='outlined' size="small" />
+                    <TextField className={classes.emailtextField} error={regexObj.emailBorder} helperText={regexObj.emailHelper} variant='outlined' size="small" onChange={takingEmail} />
                 </Box>
                 <Box className={classes.password}>
                     <span className={classes.text}>Password</span>
-                    <TextField variant='outlined' type="password" size="small" endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                edge="end" />
-                        </InputAdornment>
-                    } />
-                    <Box className={classes.forgotpasswordBox}>
-                        <span className={classes.forgotpassword}>forgot password?</span>
-                    </Box>
-
+                    <TextField error={regexObj.passwordBorder} helperText={regexObj.passwordHelper} variant='outlined' type="password" size="small" onChange={takingPassword} />
+                    <span className={classes.forgotpassword}>forgot password?</span>
                 </Box>
                 <Box className={classes.loginBox}>
-                    <Button className={classes.loginbutton} variant='contained'>Login</Button>
+                    <Button className={classes.loginbutton} variant='contained' onClick={submit}>Login</Button>
                 </Box>
                 <Box className={classes.dividertext}>
                     <Divider sx={{ borderBottomWidth: 2, width: '30%' }} />OR<Divider sx={{ borderBottomWidth: 2, width: '30%' }} />
