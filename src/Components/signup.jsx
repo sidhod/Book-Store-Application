@@ -6,7 +6,7 @@ import { registerApi } from "../services/userServices";
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 const firstnameRegex = /^[A-Z]{1}[a-z]{4,}$/;
-const mobilenumberRegex = /^[6-9]{1}[0-9]{10,}$/;
+const mobilenumberRegex = /^[6-9]{1}[0-9]{9}$/;
 const useStyles = makeStyles({
     signinpaper: {
         width: '25vw',
