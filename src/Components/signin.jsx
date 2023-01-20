@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { makeStyles } from '@mui/styles';
 import { Paper, Box, Button, TextField, Divider, InputAdornment, IconButton, FormControl } from "@mui/material";
+import { loginApi } from "../services/userServices";
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 const useStyles = makeStyles({
@@ -200,6 +201,14 @@ function Signin(props) {
                 passwordHelper: ""
             }))
         }
+        if (emailTest === true && passwordTest === true) {
+            loginApi(signinObj)
+                .then((response) => {
+                    console.log(response);
+                    localStorage.setItem('token', response.data.data)
+                })
+                .catch((error) => { console.log(error) });
+        }
     }
     const toggling = () => {
         props.signin()
@@ -219,7 +228,7 @@ function Signin(props) {
                 <Box className={classes.password}>
                     <span className={classes.text}>Password</span>
                     <TextField error={regexObj.passwordBorder} helperText={regexObj.passwordHelper} variant='outlined' type="password" size="small" onChange={takingPassword} />
-                    <span className={classes.forgotpassword}>forgot password?</span>
+                    <span className={classes.forgotpassword}>Forgot Password?</span>
                 </Box>
                 <Box className={classes.loginBox}>
                     <Button className={classes.loginbutton} variant='contained' onClick={submit}>Login</Button>
@@ -228,8 +237,8 @@ function Signin(props) {
                     <Divider sx={{ borderBottomWidth: 2, width: '30%' }} />OR<Divider sx={{ borderBottomWidth: 2, width: '30%' }} />
                 </Box>
                 <Box className={classes.fandg}>
-                    <Button className={classes.facebookbutton} variant='contained' >facebook</Button>
-                    <Button className={classes.googlebutton} variant='outlined' disabled>google</Button>
+                    <Button className={classes.facebookbutton} variant='contained' >Facebook</Button>
+                    <Button className={classes.googlebutton} variant='outlined' disabled>Google</Button>
                 </Box>
             </Box>
         </Paper>
