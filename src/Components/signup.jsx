@@ -1,6 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import { makeStyles } from '@mui/styles';
-import { Paper, Box, Button, TextField, Divider } from "@mui/material";
+import { Paper, Box, Button, TextField } from "@mui/material";
+import { registerApi } from "../services/userServices";
+const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
+const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
+const firstnameRegex = /^[A-Z]{1}[a-z]{4,}$/;
+const mobilenumberRegex = /^[6-9]{1}[0-9]{10,}$/;
 const useStyles = makeStyles({
     signinpaper: {
         width: '25vw',
@@ -71,7 +77,7 @@ const useStyles = makeStyles({
         height: '15%',
         display: 'flex',
         flexDirection: "column",
-        marginTop: '5px'
+        marginTop: '7px'
     },
     password: {
         border: '0px solid blue',
@@ -157,6 +163,105 @@ const useStyles = makeStyles({
 });
 function Signup(props) {
     const classes = useStyles()
+    const [registrationObj, setFirstLastNameObj] = useState({ firstName: "", email: "", password: "", mobileNumber: "" })
+    const [regexObj, setRegexObj] = useState({ firstNameBorder: false, firstNameHelper: "", mobileNumberBorder: false, mobileNumberHelper: "", emailBorder: false, emailHelper: "", passwordBorder: false, passwordHelper: "" })
+    const takingFirstName = (event) => {
+        // setSigninobj({ email: event.target.value })
+        setFirstLastNameObj(prevState => ({
+            ...prevState,
+            firstName: event.target.value
+        }))
+    }
+    const takingEmail = (event) => {
+        // setSigninobj({ password: event.target.value })
+        setFirstLastNameObj(prevState => ({
+            ...prevState,
+            email: event.target.value
+        }))
+    }
+    const takingPassword = (event) => {
+        // setSigninobj({ password: event.target.value })
+        setFirstLastNameObj(prevState => ({
+            ...prevState,
+            password: event.target.value
+        }))
+    }
+    const takingMobileNumber = (event) => {
+        // setSigninobj({ password: event.target.value })
+        setFirstLastNameObj(prevState => ({
+            ...prevState,
+            mobileNumber: event.target.value
+        }))
+    }
+    const register = () => {
+        let firstNameTest = firstnameRegex.test(registrationObj.firstName);
+        let mobileNumberTest = mobilenumberRegex.test(registrationObj.mobileNumber);
+        let emailTest = emailRegex.test(registrationObj.email);
+        let passwordTest = passwordRegex.test(registrationObj.password);
+        if (firstNameTest === false) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                firstNameBorder: true,
+                firstNameHelper: "Enter Valid Name"
+            }))
+        }
+        else if (firstNameTest === true) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                firstNameBorder: false,
+                firstNameHelper: ""
+            }))
+        }
+        if (mobileNumberTest === false) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                mobileNumberBorder: true,
+                mobileNumberHelper: "Enter Valid Mobile Number"
+            }))
+        }
+        else if (mobileNumberTest === true) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                mobileNumberBorder: false,
+                mobileNumberHelper: ""
+            }))
+        }
+        if (emailTest === false) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                emailBorder: true,
+                emailHelper: "Enter Valid Email"
+            }))
+        }
+        else if (emailTest === true) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                emailBorder: false,
+                emailHelper: ""
+            }))
+        }
+        if (passwordTest === false) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                passwordBorder: true,
+                passwordHelper: "Enter Valid Password"
+            }))
+        }
+        else if (passwordTest === true) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                passwordBorder: false,
+                passwordHelper: ""
+            }))
+        }
+        if (firstNameTest === true && mobileNumberTest === true && emailTest === true && passwordTest === true) {
+            registerApi(registrationObj)
+                .then((reponse) => {
+                    console.log(reponse)
+                })
+                .catch((error) => { console.log(error) });
+        }
+    }
     const toggling = () => {
         props.signup()
 
@@ -172,23 +277,23 @@ function Signup(props) {
                 </Box>
                 <Box className={classes.name}>
                     <span className={classes.text}>Full Name</span>
-                    <TextField className={classes.emailtextField} variant='outlined' size="small" />
+                    <TextField className={classes.emailtextField} error={regexObj.firstNameBorder} helperText={regexObj.firstNameHelper} variant='outlined' size="small" onChange={takingFirstName} />
                 </Box>
                 <Box className={classes.email}>
                     <span className={classes.text}>Email id</span>
-                    <TextField className={classes.emailtextField} variant='outlined' size="small" />
+                    <TextField className={classes.emailtextField} error={regexObj.emailBorder} helperText={regexObj.emailHelper} variant='outlined' size="small" onChange={takingEmail} />
                 </Box>
                 <Box className={classes.password}>
                     <span className={classes.text}>Password</span>
-                    <TextField variant='outlined' type="password" size="small" />
+                    <TextField error={regexObj.passwordBorder} helperText={regexObj.passwordHelper} variant='outlined' type="password" size="small" onChange={takingPassword} />
                 </Box>
 
                 <Box className={classes.email}>
                     <span className={classes.text}>Mobile Number</span>
-                    <TextField className={classes.emailtextField} variant='outlined' size="small" />
+                    <TextField error={regexObj.mobileNumberBorder} helperText={regexObj.mobileNumberHelper} className={classes.emailtextField} variant='outlined' size="small" onChange={takingMobileNumber} />
                 </Box>
                 <Box className={classes.loginBox}>
-                    <Button className={classes.loginbutton} variant='contained'>Login</Button>
+                    <Button className={classes.loginbutton} variant='contained' onClick={register}>Signup</Button>
                 </Box>
             </Box>
         </Paper >
