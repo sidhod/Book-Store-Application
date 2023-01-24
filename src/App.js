@@ -3,6 +3,7 @@ import './App.css';
 import BookDetails from './Components/booksDetails';
 import CustomerDetails from './Components/customerDetails';
 import MyCart from './Components/mycart';
+import OrderSuccess from './Components/order';
 import Router1 from './Components/Router';
 import WishList from './Components/wishList';
 import Dashboard from './Pages/Dashboard/dashboard';
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
       {/* <WishList /> */}
       <Router1 />
+      {/* <OrderSuccess /> */}
       {/* <LoginSiginPage /> */}
       {/* <Dashboard /> */}
       {/* <CustomerDetails /> */}

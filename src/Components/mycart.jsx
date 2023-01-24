@@ -9,6 +9,7 @@ import CustomerDetails from './customerDetails';
 import Header from './header';
 import QuantityCounter from './quantityCounter';
 import { getAllBooksCart, removeFromBagDirectly } from '../services/DataService';
+import { useNavigate } from 'react-router';
 
 
 
@@ -183,6 +184,10 @@ const MyCart = () => {
     const [details, setDetails] = useState(false);
     const [toggle, setToggle] = useState(false);
     const [order, setOrder] = useState(false);
+    const navigate = useNavigate();
+    const addorder = () => {
+        navigate('/order')
+    }
 
     const openCustomerDetails = () => {
         setDetails(true)
@@ -354,7 +359,7 @@ const MyCart = () => {
 
                                     }
                                     <Box className={classes.btn}>
-                                        <Button variant='contained' sx={{ width: '23%' }} >Checkout</Button>
+                                        <Button variant='contained' sx={{ width: '23%' }} onClick={addorder}>Checkout</Button>
                                     </Box>
                                 </Box>
                             </Box>
