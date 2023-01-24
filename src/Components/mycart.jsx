@@ -354,7 +354,7 @@ const MyCart = () => {
 
                                     }
                                     <Box className={classes.btn}>
-                                        <Button variant='contained' sx={{ width: '23%' }}>Checkout</Button>
+                                        <Button variant='contained' sx={{ width: '23%' }} >Checkout</Button>
                                     </Box>
                                 </Box>
                             </Box>
