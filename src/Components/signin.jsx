@@ -3,6 +3,7 @@ import { useState } from "react";
 import { makeStyles } from '@mui/styles';
 import { Paper, Box, Button, TextField, Divider, InputAdornment, IconButton, FormControl } from "@mui/material";
 import { loginApi } from "../services/userServices";
+import { useNavigate } from 'react-router-dom';
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 const useStyles = makeStyles({
@@ -151,6 +152,7 @@ const useStyles = makeStyles({
 });
 function Signin(props) {
     const classes = useStyles()
+    const navigate = useNavigate();
     const [signinObj, setSigninobj] = useState({ email: "", password: "" });
     const [regexObj, setRegexObj] = useState({ emailBorder: false, emailHelper: "", passwordBorder: false, passwordHelper: "" })
     const takingEmail = (event) => {
@@ -206,6 +208,7 @@ function Signin(props) {
                 .then((response) => {
                     console.log(response);
                     localStorage.setItem('token', response.data.data)
+                    navigate('/dashboard')
                 })
                 .catch((error) => { console.log(error) });
         }

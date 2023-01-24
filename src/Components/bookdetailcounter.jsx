@@ -6,7 +6,7 @@ import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOut
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { fontSize } from "@mui/system";
 import { Margin } from "@mui/icons-material";
-import { decreaseQuantity, getBookInCart, increaseQuantity } from "../services/DataService";
+import { decreaseQuantity, getAllBooksCart, getBookInCart, increaseQuantity } from "../services/DataService";
 const useStyles = makeStyles({
     counterButtons: {
         border: '0px solid red',
@@ -29,27 +29,39 @@ const useStyles = makeStyles({
     }
 })
 
-const QuantityCounter = (props) => {
+const BookDetailsCounter = (props) => {
     const classes = useStyles();
     const [quantity, setquantity] = React.useState();
+    // const getquantity = () => {
+    //     let bookId = props.inputObj._id
+    //     getBookInCart(bookId).then(res => {
+    //         console.log(res);
+    //         setquantity(res.data.data.quantity)
+    //     }).catch(err => {
+    //         console.log(err)
+    //     })
+    // }
+    // const autoRefresh = () => {
+    //     getquantity()
+    // }
 
+    // useEffect(() => {
+    //     getquantity();
+    // }, [])
     const increaseQ = () => {
-        let bookId = props.book.productId
-        console.log(props.book.productId)
+        let bookId = props.inputObj._id
         console.log("from booksummary to cart:", bookId)
         increaseQuantity(bookId).then(res => {
             console.log(res.data.data.books);
-            props.autoRefresh()
         }).catch(err => {
             console.log(err)
         })
     }
     const decreaseQ = () => {
-        let bookId = props.book.productId
+        let bookId = props.inputObj._id
         console.log("from booksummary to cart:", bookId)
         decreaseQuantity(bookId).then(res => {
-            console.log(res);
-            props.autoRefresh()
+            console.log(res)
         }).catch(err => {
             console.log(err)
         })
@@ -58,9 +70,9 @@ const QuantityCounter = (props) => {
     return (
         <Box className={classes.counterButtons}>
             <Button className={classes.decrement} style={{ color: '#DBDBDB' }}><RemoveCircleOutlineOutlinedIcon fontSize="large" onClick={decreaseQ} /></Button>
-            <Box className={classes.count}>{props.book.quantity}</Box>
+            <Box >{props.counter}</Box>
             <Button className={classes.increment} style={{ color: '#DBDBDB' }} ><AddCircleOutlineOutlinedIcon fontSize="large" onClick={increaseQ} /></Button>
         </Box>
     )
 }
-export default QuantityCounter;
+export default BookDetailsCounter;

@@ -10,7 +10,9 @@ const useStyles = makeStyles({
         height: '265px',
         display: 'flex',
         flexDirection: 'column',
-        marginBottom: '20px'
+        marginRight: '60px',
+        marginBottom: '20px',
+        border: '0px solid red'
     },
     container1: {
         width: '100%',
@@ -88,8 +90,12 @@ const useStyles = makeStyles({
 const BookCard = (props) => {
     const classes = useStyles();
     // const image = Buffer.from(props.book.bookImage).toString();
+    function openBookDetails() {
+        console.log("from book", props.book)
+        props.openBookDetailsFunction(props.book)
+    }
     return (
-        <Paper elevation={2} className={classes.mainPaper}>
+        <Paper elevation={2} className={classes.mainPaper} onClick={openBookDetails}>
             <Box className={classes.container1}>
                 <img className={classes.imageMain} src={'image 11.png'} />
             </Box>

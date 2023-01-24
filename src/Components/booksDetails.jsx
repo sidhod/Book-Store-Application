@@ -1,12 +1,17 @@
 import { Box, Button, Divider, Rating } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./header";
+import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { fontSize } from "@mui/system";
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { display } from "@mui/system";
 import StarIcon from '@mui/icons-material/Star';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import QuantityCounter from "./quantityCounter";
+import { addToBag, decreaseQuantity, getAllBooksCart, getBookInCart, increaseQuantity } from "../services/DataService";
+import { addToWishList, getWishlist } from "../services/wishListService";
+import BookDetailsCounter from "./bookdetailcounter";
 // import Textarea from '@mui/joy/Textarea';
 const useStyles = makeStyles({
     smallImage: {
@@ -42,7 +47,7 @@ const useStyles = makeStyles({
         top: '25px'
     },
     buttonBox: {
-        width: '100%',
+        width: '101%',
         border: '0px solid #D1D1D1',
         height: '40px',
         display: 'flex',
@@ -157,19 +162,127 @@ const useStyles = makeStyles({
         backgroundColor: '#F5F5F5',
         display: 'flex',
         flexDirection: 'column'
+    },
+    counterButtons: {
+        border: '0px solid red',
+        height: '100%',
+        display: 'flex',
+        width: '35%',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    decrement: {
+    },
+    count: {
+        border: '1px solid #DBDBDB',
+        width: '45px',
+        height: '30px',
+        fontSize: '22px'
+    },
+    increment: {
     }
 })
-function BookDetails() {
-    const classes = useStyles()
-    const [value, setValue] = React.useState(3);
-    const [cardToggle, setcardToggle] = React.useState(false);
+function BookDetails(props) {
+    const classes = useStyles();
+    console.log("BookDetails=========>" + props.inputObj._id)
+    const [value, setValue] = useState(3);
+    const [cartList, setCartList] = useState();
+    const [cardToggle, setcardToggle] = useState();
+    const [wishListToggle, setwishlistToggle] = useState(false);
+    const [toggleList, settoggleList] = useState([]);
+    const [toggleWishList, settoggleWishList] = useState([]);
+    const addWishList = () => {
+        let bookId = props.inputObj._id
+        console.log("from booksummary to wishlists:", bookId)
+        addToWishList(bookId).then(res => {
+            console.log(res);
+            setwishlistToggle(true);
+            autoRefresh();
+
+        }).catch(err => {
+            console.log(err);
+            setwishlistToggle(true)
+        })
+    }
+    const increaseQ = () => {
+        let bookId = props.inputObj._id
+        console.log("from booksummary to cart:", bookId)
+        increaseQuantity(bookId).then(res => {
+            console.log(res.data.data.books);
+            autoRefresh()
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+    const decreaseQ = () => {
+        let bookId = props.inputObj._id
+        console.log("from booksummary to cart:", bookId)
+        decreaseQuantity(bookId).then(res => {
+            console.log(res)
+            autoRefresh()
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
     const addCard = () => {
         setcardToggle(true)
+        let bookId = props.inputObj._id
+        console.log("from booksummary to cart:", bookId)
+        addToBag(bookId)
+            .then(res => {
+                console.log(res)
+                setCartList(res.data.data)
+                autoRefresh()
+
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+    const getCartList = () => {
+        getAllBooksCart()
+            .then(res => {
+                console.log(res)
+                console.log(res.data.data[0].books)
+                let data = res.data.data[0].books.filter((object) => {
+                    if (props.inputObj._id == object.productId) {
+                        console.log("output===>" + object._id)
+                        settoggleList(object._id)
+                        setcardToggle(object.quantity)
+
+                    }
+                })
+            })
+            .catch(error => { console.log(error) });
+    }
+    const getWishListBooks = () => {
+        getWishlist()
+            .then(res => {
+                console.log(res)
+                let data = res.data.data[0].books.filter((object) => {
+                    if (props.inputObj._id == object.productId) {
+                        console.log("output===>" + object._id)
+                        settoggleWishList(object._id)
+                    }
+                })
+            })
+            .catch(error => { console.log(error) })
+    }
+    console.log("list==========>", toggleList)
+    useEffect(() => {
+        getCartList()
+        getWishListBooks()
+    }, [])
+    function autoRefresh() {
+        getCartList()
+        getWishListBooks()
     }
     return (
         <div>
-            <Header />
-            <Box style={{ border: '0px solid red', position: 'relative', left: '190px', top: '65px', width: '72%', height: 'auto' }}>
+            <Box style={{ border: '0px solid red', width: '100%', height: 'auto' }}>
                 <Box style={{ border: '0px solid green', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', height: '60px' }}>
                     <Box style={{ border: '0px solid green', display: 'flex', flexDirection: 'row', width: '12%', alignItems: 'center' }}>
                         <div style={{ color: '#878787', fontSize: '12px' }}>
@@ -197,9 +310,19 @@ function BookDetails() {
                                 </Box>
                                 <Box className={classes.buttonBox}>
                                     {
-                                        cardToggle ? <QuantityCounter /> : <Button className={classes.buttonCart} variant='contained' onClick={addCard}>ADD TO BAG</Button>
+
+                                        (toggleList.length != 0) ? <Box className={classes.counterButtons}>
+                                            <Button className={classes.decrement} style={{ color: '#DBDBDB' }} onClick={decreaseQ}><RemoveCircleOutlineOutlinedIcon fontSize="large" /></Button>
+                                            <Box className={classes.count}>{cardToggle}</Box>
+                                            <Button className={classes.increment} style={{ color: '#DBDBDB' }} onClick={increaseQ}><AddCircleOutlineOutlinedIcon fontSize="large" /></Button>
+                                        </Box> : <Button className={classes.buttonCart} onClick={addCard}>ADD TO BAG</Button>
+
                                     }
-                                    <Button className={classes.buttonwishList} variant='contained'><FavoriteIcon sx={{ fontSize: 'medium', marginRight: '10px' }} />WISHLIST</Button>
+
+                                    {
+
+                                        (toggleWishList.length != 0) ? <Box style={{ marginTop: '10px', fontSize: '18px', fontWeight: 'bold' }}>Added in WishList</Box> : <Button className={classes.buttonwishList} variant='contained' onClick={addWishList}><FavoriteIcon sx={{ fontSize: 'medium', marginRight: '10px' }} variant='contained' />WISHLIST</Button>
+                                    }
                                 </Box>
                             </Box>
 
@@ -207,10 +330,10 @@ function BookDetails() {
                     </Box>
                     <Box className={classes.containDetails}>
                         <Box className={classes.bookTitle}>
-                            Ux For dummy
+                            {props.inputObj.bookName}
                         </Box>
                         <Box className={classes.bookAuthor}>
-                            by steven crung
+                            {props.inputObj.author}
                         </Box>
                         <Box className={classes.bookRatings}>
                             <Box className={classes.ratings}>
@@ -218,15 +341,17 @@ function BookDetails() {
                                 <StarIcon sx={{ width: '14px', height: '13px', marginLeft: '3px', color: 'white' }} />
                             </Box>
                             <Box className={classes.qty}>
-                                (6)
+                                ({props.inputObj.quantity})
                             </Box>
                         </Box>
                         <Box className={classes.bookPrice}>
                             <Box className={classes.discountPrice}>
-                                Rs.50000
+                                Rs.{props.inputObj.discountPrice
+                                }
                             </Box>
                             <Box className={classes.mPrice}>
-                                Rs.10000
+                                Rs.{props.inputObj.price
+                                }
                             </Box>
 
                         </Box>
@@ -239,9 +364,7 @@ function BookDetails() {
                                 </Box>
                             </Box>
                             <Box className={classes.description}>
-                                <span>Sai babab fhbfjewfjewjhbfjwebfjwbfjwbjfj
-                                    Sai babab fhbfjewfjewjhbfjwebfjwbfjwbjfj
-                                    Sai babab fhbfjewfjewjhbfjwebfjwbfjwbjfj</span>
+                                <span>{props.inputObj.description}</span>
                             </Box>
                         </Box>
 
