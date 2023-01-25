@@ -7,9 +7,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from "@mui/material/IconButton";
-const useStyles = makeStyles({
-
-});
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+const useStyles = makeStyles({});
 
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -29,8 +29,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-function Header() {
+function Header(props) {
+    const navigate = useNavigate();
     const classes = useStyles();
+    const [search, setsarch] = useState({ search1: "" })
+    const searchBook = (event) => {
+        setsarch(prevState => ({
+            ...prevState,
+            search1: event.target.value
+        }))
+        // console.log(search)
+    }
+    const searchInBook = () => {
+        let arrlist = props.booksList.filter((object) => {
+            // console.log(object.bookName)
+            console.log(search.search1)
+            if (`${object.bookName}`.includes(search.search1)) {
+                console.log(true)
+                return object
+            }
+        })
+        console.log(arrlist)
+        props.searchBook(arrlist)
+    }
     return (
         <Box className={classes.header} sx={{ flexGrow: 1, position: 'fixed', zIndex: '5' }}>
             <AppBar className={classes.appBar} position="static" sx={{ backgroundColor: '#A03037', height: '60px', position: 'fixed' }}>
@@ -60,8 +81,8 @@ function Header() {
                         <SearchIcon sx={{
                             marginLeft: '10px',
                             color: 'gray',
-                        }}></SearchIcon>
-                        <InputBase placeholder='Search...' sx={{ marginLeft: '20px', }}></InputBase>
+                        }} onClick={searchInBook}></SearchIcon>
+                        <InputBase placeholder='Search...' sx={{ marginLeft: '20px', }} onChange={searchBook}></InputBase>
                     </Box>
                     <Box sx={{ border: "0px solid red", height: "7vh", border: "0px solid black" }} >
                         <Box className="iconsFive" sx={{ display: { xs: "none", md: "flex", border: "0px solid black", width: "10vw", position: "relative", left: "210px", display: "flex", flexDirection: "row", justifyContent: "space-between" }, height: '90%' }}>

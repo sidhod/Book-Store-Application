@@ -289,7 +289,7 @@ function BookDetails(props) {
                             Home/
                         </div>
                         <div style={{ fontSize: '14px', fontWeight: '500', marginLeft: '5px' }}>
-                            Book(01)
+                            Book
                         </div>
                     </Box>
                 </Box>

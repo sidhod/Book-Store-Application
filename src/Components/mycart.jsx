@@ -10,6 +10,7 @@ import Header from './header';
 import QuantityCounter from './quantityCounter';
 import { getAllBooksCart, removeFromBagDirectly } from '../services/DataService';
 import { useNavigate } from 'react-router';
+import { addToOrder } from '../services/orderService';
 
 
 
@@ -186,6 +187,11 @@ const MyCart = () => {
     const [order, setOrder] = useState(false);
     const navigate = useNavigate();
     const addorder = () => {
+        cartList.map((book) => (
+            addToOrder(book.productId)
+                .then(res => { console.log(res) })
+                .catch(error => { console.log(error) })
+        ))
         navigate('/order')
     }
 

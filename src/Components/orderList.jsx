@@ -1,5 +1,5 @@
 import React from "react";
-
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/material";
 import { useEffect } from "react";
@@ -7,6 +7,7 @@ import { useState } from "react";
 import { DeleteOutlined } from "@mui/icons-material";
 import Header from "./header";
 import { getWishlist, removeFromWishList } from "../services/wishListService";
+import { getOrderList } from "../services/orderService";
 
 const useStyles = makeStyles({
     cartHeader: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles({
     container: {
         width: '100%',
         height: '78vh',
-        border: '1px solid #E4E4E4',
+        border: '0px solid #E4E4E4',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -107,11 +108,15 @@ const useStyles = makeStyles({
         color: '#878787',
         textDecorationLine: 'line-through'
     },
-    deletewishlist: {
+    orderDetails: {
         border: '0px solid red',
         position: 'relative',
         right: '50px',
-        bottom: '35px'
+        bottom: '35px',
+        color: '#0A0102',
+        width: '250px',
+        font: 'normal normal bold 18px Roboto',
+
     },
     footer: {
         width: '100vw',
@@ -130,20 +135,11 @@ const useStyles = makeStyles({
     }
 })
 
-const WishList = () => {
+const OrderList = () => {
     const classes = useStyles();
     const [wishList, setWishList] = useState([]);
-    const removeitem = (id) => {
-        removeFromWishList(id).then(res => {
-            console.log(res);
-            autoRefresh()
-        }).then(err => {
-            console.log(err)
-        })
-    }
-
     const getWishListBooks = () => {
-        getWishlist()
+        getOrderList()
             .then(res => {
                 console.log(res)
                 setWishList(res.data.data[0].books)
@@ -153,10 +149,7 @@ const WishList = () => {
     useEffect(() => {
         getWishListBooks()
     }, [])
-    function autoRefresh() {
-        getWishListBooks()
-    }
-    console.log('wishList======>' + wishList)
+    console.log('OrderList======>' + wishList)
     return (
 
         <div>
@@ -166,14 +159,9 @@ const WishList = () => {
                 <Box style={{ border: '0px solid red', position: 'relative', left: '190px', top: '65px', width: '72%', height: 'auto' }}>
                     <Box className={classes.cartHeader}>
                         <Box className={classes.homeText}>Home/</Box>
-                        <Box className={classes.cartText}>My WishList</Box>
+                        <Box className={classes.cartText}>My Order</Box>
                     </Box>
                     <Box className={classes.container}>
-                        <Box className={classes.main}>
-                            <Box className={classes.details}>
-                                <span>My Wishlist</span>
-                            </Box>
-                        </Box>
                         {
                             wishList.map((book) => (
                                 <Box className={classes.mainWishList}>
@@ -201,8 +189,8 @@ const WishList = () => {
                                             </Box>
                                         </Box>
                                     </Box>
-                                    <Box className={classes.deletewishlist}>
-                                        <DeleteOutlined sx={{ color: '#9D9D9D' }} onClick={() => (removeitem(book.productId))} fontSize='small' />
+                                    <Box className={classes.orderDetails}>
+                                        <FiberManualRecordIcon style={{ fontSize: '10px', color: '#26A541' }} /> Order Placed on Jan 25
                                     </Box>
                                 </Box>
                             ))
@@ -216,4 +204,4 @@ const WishList = () => {
         </div>
     )
 }
-export default WishList;
+export default OrderList;

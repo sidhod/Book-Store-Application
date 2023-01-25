@@ -4,6 +4,7 @@ import Dashboard from '../Pages/Dashboard/dashboard';
 import LoginSiginPage from '../Pages/Login&signin/loginsigin';
 import MyCart from './mycart';
 import OrderSuccess from './order';
+import OrderList from './orderList';
 import WishList from './wishList';
 
 
@@ -17,6 +18,7 @@ function Router1() {
                     <Route path="/mycard" element={<MyCart />} />
                     <Route path="/wishlist" element={<WishList />} />
                     <Route path="/order" element={<OrderSuccess />} />
+                    <Route path="/orderadd" element={<OrderList />} />
                 </Routes>
             </Router>
         </div>
