@@ -15,6 +15,35 @@ import { addToOrder } from '../services/orderService';
 
 
 const useStyles = makeStyles({
+    mainBox: {
+        border: '0px solid red',
+        position: 'relative',
+        left: '190px',
+        top: '65px',
+        width: '72%',
+        height: 'auto'
+    },
+    headerc: {
+        border: '0px solid green',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        height: '60px'
+    },
+    home: {
+        color: '#878787', fontSize: '12px'
+    },
+    cart: {
+        fontSize: '14px', fontWeight: '500', marginLeft: '5px'
+    },
+    headertext: {
+        border: '0px solid green',
+        display: 'flex',
+        flexDirection: 'row',
+        width: '12%',
+        alignItems: 'center'
+    },
     cartHeader: {
         width: '60vw',
         height: '10vh',
@@ -25,6 +54,16 @@ const useStyles = makeStyles({
         alignItems: 'center',
         position: 'relative',
         left: '190px'
+    },
+    Remove: {
+        fontSize: '14px !important',
+        color: '#0A0102 !important',
+        fontWeight: 'bold !important',
+        alignItems: 'flex-end !important',
+        position: 'absolute !important',
+        top: '270px',
+        left: '350px',
+        textTransform: 'none'
     },
     homeText: {
         color: '#9D9D9D',
@@ -156,7 +195,7 @@ const useStyles = makeStyles({
         marginBottom: '20px'
     },
     footer: {
-        marginTop: '80px',
+        marginTop: '87px',
         width: '100vw',
         height: '7vh',
         backgroundColor: '#2E1D1E',
@@ -170,7 +209,308 @@ const useStyles = makeStyles({
         color: 'white',
         marginLeft: '250px',
         fontSize: '12px'
+    },
+    ['@media only screen and (min-width: 320px) and (max-width: 480px)']: {
+        mainBox: {
+            border: '0px solid red',
+            position: 'relative',
+            left: '0px',
+            width: '112%',
+            height: 'auto'
+        },
+        headertext: {
+            border: '0px solid green',
+            display: 'flex',
+            flexDirection: 'row',
+            width: '35%',
+            alignItems: 'center'
+        },
+        home: {
+            border: '0px solid green',
+            fontSize: '18px !important',
+        },
+        cart: {
+            fontSize: '18px',
+        },
+        container: {
+            width: '100%',
+            height: 'auto',
+            border: '0px solid black',
+        },
+        mainCard: {
+            width: '98%',
+            height: 'auto',
+            border: '1px solid #DBDBDB',
+            marginTop: '15px'
+        },
+        details: {
+            width: '90%',
+            height: '90%',
+            border: '0px solid red'
+        },
+        cartLocation: {
+            height: '50px',
+            border: '0px solid red'
+        },
+        textcart: {
+            width: '100%',
+            height: '25vh',
+            border: '0px solid blue',
+            marginBottom: '50px',
+            display: 'flex',
+            justifyContent: 'space-between'
+        },
+        bookimage: {
+            border: '0px solid red',
+            width: '30%',
+            marginTop: '2px'
+        },
+        container2: {
+            width: '60%',
+            height: '100%',
+            border: '0px solid red',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            marginLeft: '0px'
+        },
+        counterbox: {
+            width: '20px'
+        },
+        btn: {
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginBottom: '20px',
+            fontSize: '12px'
+        },
+        footer: {
+            position: 'relative',
+            bottom: '-7vh',
+            width: '112vw'
+        },
+        footertxt: {
+            color: 'white',
+            marginLeft: '10px',
+            fontSize: '12px'
+        },
+        Remove: {
+            fontSize: '14px !important',
+            color: '#0A0102 !important',
+            fontWeight: 'bold !important',
+            alignItems: 'flex-end !important',
+            position: 'absolute !important',
+            top: '245px',
+            left: '280px',
+            textTransform: 'none'
+        },
+
+    },
+    ['@media only screen and (min-width: 489px) and (max-width: 789px)']: {
+        mainBox: {
+            border: '0px solid red',
+            position: 'relative',
+            left: '0px',
+            width: '112%',
+            height: 'auto'
+        },
+        headertext: {
+            border: '0px solid green',
+            display: 'flex',
+            flexDirection: 'row',
+            width: '35%',
+            alignItems: 'center',
+            marginLeft: '10px'
+        },
+        home: {
+            border: '0px solid green',
+            fontSize: '18px !important',
+        },
+        cart: {
+            fontSize: '18px',
+        },
+        container: {
+            width: '100%',
+            height: 'auto',
+            border: '0px solid black',
+        },
+        mainCard: {
+            width: '98%',
+            height: 'auto',
+            border: '1px solid #DBDBDB',
+            marginTop: '0px'
+        },
+        details: {
+            width: '90%',
+            height: '90%',
+            border: '0px solid red'
+        },
+        cartLocation: {
+            height: '50px',
+            border: '0px solid red'
+        },
+        textcart: {
+            width: '100%',
+            height: '25vh',
+            border: '0px solid blue',
+            marginBottom: '50px',
+            display: 'flex',
+            justifyContent: 'space-between'
+        },
+        bookimage: {
+            border: '0px solid red',
+            width: '30%',
+            height: '230px',
+            marginTop: '10px'
+
+        },
+        container2: {
+            width: '60%',
+            height: '100%',
+            border: '0px solid red',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            marginLeft: '0px'
+        },
+        counterbox: {
+            width: '20px'
+        },
+        btn: {
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginBottom: '20px',
+            fontSize: '12px'
+        },
+        footer: {
+            position: 'relative',
+            bottom: '-7vh',
+            width: '112vw'
+        },
+        footertxt: {
+            color: 'white',
+            marginLeft: '30px',
+            // fontSize: '12px'
+        },
+        Remove: {
+            fontSize: '14px !important',
+            color: '#0A0102 !important',
+            fontWeight: 'bold !important',
+            alignItems: 'flex-end !important',
+            position: 'absolute !important',
+            top: '245px',
+            left: '350px',
+            textTransform: 'none'
+        },
+
+    },
+    ['@media only screen and (min-width: 789px) and (max-width: 1024px)']: {
+        mainBox: {
+
+            position: 'relative',
+            left: '100px',
+            width: '80%',
+            height: 'auto'
+        },
+        mainCard: {
+            height: 'auto',
+            border: '1px solid #DBDBDB',
+            marginTop: '0px'
+        },
+        headertext: {
+
+            display: 'flex',
+            flexDirection: 'row',
+            width: '35%',
+            alignItems: 'center',
+            marginLeft: '10px'
+        },
+        home: {
+
+            fontSize: '18px !important',
+        },
+        cart: {
+            fontSize: '18px',
+        },
+        container: {
+            width: '100%',
+            height: 'auto',
+            border: '0px solid black',
+        },
+        mainCard: {
+            width: '98%',
+            height: 'auto',
+            border: '1px solid #DBDBDB',
+            marginTop: '0px'
+        },
+        details: {
+            width: '90%',
+            height: '90%',
+
+        },
+        cartLocation: {
+            height: '50px',
+
+        },
+        textcart: {
+            width: '100%',
+            height: '25vh',
+            border: '0px solid blue',
+            marginBottom: '50px',
+            display: 'flex',
+            justifyContent: 'space-between'
+        },
+        bookimage: {
+            border: '0px solid red',
+            width: '30%',
+            height: '230px',
+            marginTop: '10px'
+
+        },
+        container2: {
+            width: '60%',
+            height: '100%',
+            border: '0px solid red',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            marginLeft: '0px'
+        },
+        counterbox: {
+            width: '20px'
+        },
+        btn: {
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginBottom: '20px',
+            fontSize: '12px'
+        },
+        footer: {
+            position: 'relative',
+            bottom: '0vh',
+            width: '112vw'
+        },
+        footertxt: {
+            color: 'white',
+            marginLeft: '30px',
+        },
+        Remove: {
+            fontSize: '14px !important',
+            color: '#0A0102 !important',
+            fontWeight: 'bold !important',
+            alignItems: 'flex-end !important',
+            position: 'absolute !important',
+            top: '245px',
+            left: '390px',
+            textTransform: 'none'
+        },
     }
+
 
 })
 
@@ -233,15 +573,15 @@ const MyCart = () => {
     return (
         <Box>
             <Header />
-            <Box style={{ border: '0px solid red', position: 'relative', left: '190px', top: '65px', width: '72%', height: 'auto' }}>
-                <Box style={{ border: '0px solid green', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', height: '60px' }}>
-                    <Box style={{ border: '0px solid green', display: 'flex', flexDirection: 'row', width: '12%', alignItems: 'center' }}>
-                        <div style={{ color: '#878787', fontSize: '12px' }}>
+            <Box className={classes.mainBox}>
+                <Box className={classes.headerc}>
+                    <Box className={classes.headertext}>
+                        <Box className={classes.home}>
                             Home/
-                        </div>
-                        <div style={{ fontSize: '14px', fontWeight: '500', marginLeft: '5px' }}>
+                        </Box>
+                        <Box className={classes.cart}>
                             My cart
-                        </div>
+                        </Box>
                     </Box>
                 </Box>
                 <Box className={classes.container}>
@@ -254,56 +594,61 @@ const MyCart = () => {
 
                                 {
                                     cartList.map((book) => (
-                                        <Box className={classes.textcart}>
-                                            <Box className={classes.bookimage}>
-                                                <img width='95%' height='65%' src={'image 11.png'} />
-                                            </Box>
-                                            <Box className={classes.container2}>
-                                                <Box className={classes.bookTitle}>
+                                        <Box>
+                                            <Box className={classes.textcart}>
+                                                <Box className={classes.bookimage}>
+                                                    <img width='95%' height='65%' src={'image 11.png'} />
+                                                </Box>
+                                                <Box className={classes.container2}>
+                                                    <Box className={classes.bookTitle}>
 
-                                                    {book.bookName}
-                                                </Box>
-                                                <Box className={classes.bookAuthor}>
-                                                    {/* by J. K. Rowling */}
-                                                    {book.description}
-                                                </Box>
-                                                <Box className={classes.bookRatings}>
-                                                    <Box className={classes.ratings}>
-                                                        <Box sx={{ fontSize: '16px', color: 'white' }}>4.5</Box>
-                                                        <StarBorderOutlinedIcon sx={{ width: '15px', height: '13px', color: 'white' }} />
+                                                        {book.bookName}
                                                     </Box>
-                                                    <Box className={classes.qty}>
-                                                        {/* (20) */}
-                                                        ({book.quantity})
+                                                    <Box className={classes.bookAuthor}>
+                                                        {/* by J. K. Rowling */}
+                                                        {book.author}
+                                                    </Box>
+                                                    <Box className={classes.bookRatings}>
+                                                        <Box className={classes.ratings}>
+                                                            <Box sx={{ fontSize: '16px', color: 'white' }}>4.5</Box>
+                                                            <StarBorderOutlinedIcon sx={{ width: '15px', height: '13px', color: 'white' }} />
+                                                        </Box>
+                                                        <Box className={classes.qty}>
+                                                            {/* (20) */}
+                                                            ({book.quantity})
+                                                        </Box>
+                                                    </Box>
+                                                    <Box className={classes.bookPrice}>
+                                                        <Box className={classes.discountPrice}>
+                                                            {/* Rs.1200 */}
+                                                            Rs.{book.discountPrice}
+                                                        </Box>
+                                                        <Box className={classes.mPrice}>
+                                                            {/* Rs.2000 */}
+                                                            Rs.{book.price}
+                                                        </Box>
+
+                                                    </Box>
+                                                    <Box className={classes.counterbox}>
+                                                        <QuantityCounter book={book} autoRefresh={autoRefresh} />
                                                     </Box>
                                                 </Box>
-                                                <Box className={classes.bookPrice}>
-                                                    <Box className={classes.discountPrice}>
-                                                        {/* Rs.1200 */}
-                                                        Rs.{book.discountPrice}
-                                                    </Box>
-                                                    <Box className={classes.mPrice}>
-                                                        {/* Rs.2000 */}
-                                                        Rs.{book.price}
-                                                    </Box>
-                                                </Box>
-                                                <Box>
-                                                    <QuantityCounter book={book} autoRefresh={autoRefresh} />
-                                                </Box>
+
                                             </Box>
                                             <Box sx={{ width: '30%' }}>
                                                 <Button
                                                     onClick={() => removeBook(book)}
-                                                    style={{ fontSize: '14px', color: '#0A0102', fontWeight: 'bold', alignItems: 'flex-end', position: 'relative', top: '140px', right: '160px', textTransform: 'none' }} >Remove</Button>
+                                                    className={classes.Remove} >Remove</Button>
                                             </Box>
                                         </Box>
+
                                     ))
                                 }
                             </Box>
                             <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', marginBottom: '50px' }}>
                                 {
                                     details ? null :
-                                        <Button sx={{ backgroundColor: '#3371B5' }} variant='contained' onClick={openCustomerDetails}>Palce Order</Button>
+                                        <Button sx={{ backgroundColor: '#3371B5' }} variant='contained' onClick={openCustomerDetails}>PlACE ORDER</Button>
                                 }
 
                             </Box>

@@ -24,7 +24,7 @@ const mainpagestyle = makeStyles({
         borderRadius: '20px'
     },
     image: {
-        border: '1px solid red',
+        border: '0px solid red',
         width: '50%',
         height: '100%',
         display: 'flex',
@@ -44,7 +44,56 @@ const mainpagestyle = makeStyles({
         marginLeft: "10px",
         fontWeight: 'bold',
         fontSize: '20px'
-    }
+    },
+    ['@media only screen and (min-width: 320px) and (max-width: 480px)']: {
+        container1: {
+            display: 'none'
+        }
+
+
+    },
+    ['@media only screen and (min-width: 480px) and (max-width: 768px)']: {
+        container1: {
+            display: 'none'
+        },
+    },
+    ['@media only screen and (min-width: 789px) and (max-width: 1024px)']: {
+        mainContainer: {
+            width: '150vw',
+            height: '150vh',
+        },
+        container1: {
+            height: '540px',
+            width: '650px',
+            position: 'absolute',
+            top: "35%",
+            left: "30%",
+        },
+        image: {
+            border: '0px solid red',
+            height: '100%',
+            width: '70%'
+        },
+        image1: {
+            borderRadius: '150px',
+        },
+        text: {
+
+            fontSize: '25px'
+        },
+    },
+    //     ['@media only screen and (min-width: 480px) and (max-width: 768px)']: {
+    //     takeNoteTwo: {
+    //         height: '20vh',
+    //         width: '78vw',
+    //         position: 'relative',
+    //         left: "125px",
+    //         top: "25px"
+
+    //     },
+    // },
+    //     ['@media only screen and (min-width: 789px) and (max-width: 1024px)']: {
+    // },
 })
 function LoginSiginPage() {
     const classes = mainpagestyle()

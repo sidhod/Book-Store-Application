@@ -1,5 +1,5 @@
 import React from 'react';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+
 import { makeStyles } from "@mui/styles";
 import { Box, Button, Paper } from '@mui/material';
 import { useNavigate } from "react-router-dom";
@@ -112,7 +112,215 @@ const useStyles = makeStyles({
         color: 'white',
         marginLeft: '250px',
         fontSize: '12px'
+    },
+    shoppingbtn: {
+        backgroundColor: '#3371B5', width: '24%'
+    },
+
+    ['@media only screen and (min-width: 320px) and (max-width: 480px)']: {
+        container: {
+            width: '112vw',
+            height: '96vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'relative',
+            top: '40px',
+            border: '0px solid red',
+        },
+        mainContainer: {
+            width: '100%',
+            height: '100%',
+            border: '0px solid red',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        },
+        logo: {
+            width: '60%',
+            height: '25%',
+            marginTop: '30px',
+            border: '0px solid red',
+        },
+        text: {
+            width: '80%',
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#333232',
+            border: '0px solid red',
+            marginTop: '-10px'
+        },
+        table: {
+            width: '95%',
+            height: '32%',
+        },
+        row1: {
+            width: '100%',
+            height: '30%',
+            borderBottom: '1px solid #DCDCDC',
+            display: 'flex',
+            alignItems: 'center',
+            color: '#333232',
+            fontWeight: '500',
+            backgroundColor: '#FAFAFA',
+        },
+        txt1: {
+            width: '30%',
+        },
+        txt2: {
+            width: '30%',
+        },
+        txt3: {
+            width: '40%',
+        },
+        row2: {
+            width: '100%',
+            height: '60%',
+            display: 'flex',
+            color: '#333232',
+            fontSize: '12px',
+            fontFamily: 'calibri'
+        },
+        row2txt1: {
+            width: '30%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRight: '1px solid #DCDCDC',
+        },
+        shoppingbtn: {
+            backgroundColor: '#3371B5', width: '55%'
+        },
+        orderbutton: {
+            width: '100%',
+
+            border: '0px solid red'
+        },
+        footer: {
+            width: '115vw',
+            height: '7vh',
+            marginTop: '80px',
+
+        },
+        footertxt: {
+            color: 'white',
+            marginLeft: '20px',
+            fontSize: '12px'
+        },
+    },
+    ['@media only screen and (min-width: 489px) and (max-width: 789px)']: {
+        container: {
+            width: '112vw',
+            height: '96vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'relative',
+            top: '40px',
+            border: '0px solid red',
+        },
+        mainContainer: {
+            width: '100%',
+            height: '100%',
+            border: '0px solid red',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        },
+        logo: {
+            width: '60%',
+            height: '30%',
+            marginTop: '30px',
+            border: '0px solid red',
+        },
+        text: {
+            width: '80%',
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#333232',
+            border: '0px solid red',
+            marginTop: '-10px'
+        },
+        table: {
+            width: '95%',
+            height: '32%',
+        },
+        row1: {
+            width: '100%',
+            height: '30%',
+            borderBottom: '1px solid #DCDCDC',
+            display: 'flex',
+            alignItems: 'center',
+            color: '#333232',
+            fontWeight: '500',
+            backgroundColor: '#FAFAFA',
+        },
+        txt1: {
+            width: '30%',
+        },
+        txt2: {
+            width: '30%',
+        },
+        txt3: {
+            width: '40%',
+        },
+        row2: {
+            width: '100%',
+            height: '60%',
+            display: 'flex',
+            color: '#333232',
+            fontSize: '12px',
+            fontFamily: 'calibri'
+        },
+        row2txt1: {
+            width: '30%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRight: '1px solid #DCDCDC',
+        },
+        shoppingbtn: {
+            backgroundColor: '#3371B5', width: '55%'
+        },
+        orderbutton: {
+            width: '100%',
+
+            border: '0px solid red'
+        },
+        footer: {
+            width: '115vw',
+            height: '7vh',
+            marginTop: '80px',
+
+        },
+        footertxt: {
+            color: 'white',
+            marginLeft: '20px',
+            fontSize: '12px'
+        },
+    },
+    ['@media only screen and (min-width: 789px) and (max-width: 1024px)']: {
+        logo: {
+            width: '60%',
+            height: '30%',
+            marginTop: '30px',
+            border: '0px solid red',
+        },
+        text: {
+            width: '80%',
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#333232',
+            border: '0px solid red',
+            marginTop: '-10px'
+        },
+        shoppingbtn: {
+            width: '55%'
+        },
     }
+
 })
 const OrderSuccess = () => {
     const classes = useStyles();
@@ -147,7 +355,7 @@ const OrderSuccess = () => {
                         </Box>
                     </Paper>
                     <Box className={classes.orderbutton}>
-                        <Button variant='contained' sx={{ backgroundColor: '#3371B5', width: '24%' }} onClick={orderSuccess}
+                        <Button variant='contained' className={classes.shoppingbtn} onClick={orderSuccess}
                         >Continue Shopping</Button>
                     </Box>
                 </Box>

@@ -26,7 +26,14 @@ const useStyles = makeStyles({
         fontSize: '22px'
     },
     increment: {
-    }
+    },
+    // ['@media only screen and (min-width: 320px) and (max-width: 480px)']: {
+    //     count: {
+    //         width: '30px',
+    //         height: '20px',
+    //         fontSize: '16px'
+    //     },
+    // }
 })
 
 const QuantityCounter = (props) => {

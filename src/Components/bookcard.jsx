@@ -83,6 +83,57 @@ const useStyles = makeStyles({
         fontSize: '12px',
         color: '#878787',
         textDecorationLine: 'line-through'
+    },
+    ['@media only screen and (min-width: 320px) and (max-width: 480px)']: {
+        mainPaper: {
+            width: '100%',
+            height: '140px',
+            display: 'flex',
+            flexDirection: 'row',
+            marginRight: '60px',
+            marginBottom: '20px',
+            border: '0px solid red'
+        },
+        container1: {
+            width: '100%',
+            height: '100%',
+            border: '0px solid red',
+        },
+
+    },
+    ['@media only screen and (min-width: 489px) and (max-width: 789px)']: {
+
+        mainPaper: {
+            width: '100%',
+            height: '160px',
+            display: 'flex',
+            flexDirection: 'row',
+            marginRight: '60px',
+            marginBottom: '20px',
+            border: '0px solid red'
+        },
+        container1: {
+            width: '80%',
+            height: '100%',
+            border: '0px solid red',
+        },
+        container2: {
+            width: '100%',
+            height: '70%',
+            border: '0px solid red',
+            marginLeft: '15px'
+        },
+    },
+    ['@media only screen and (min-width: 789px) and (max-width: 1024px)']: {
+        mainPaper: {
+            marginRight: '20px',
+            marginLeft: '20px'
+        },
+        container1: {
+            width: '100%',
+            height: '100%',
+            border: '0px solid red',
+        },
     }
 
 });

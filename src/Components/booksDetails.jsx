@@ -14,6 +14,25 @@ import { addToWishList, getWishlist } from "../services/wishListService";
 import BookDetailsCounter from "./bookdetailcounter";
 // import Textarea from '@mui/joy/Textarea';
 const useStyles = makeStyles({
+    detailBox: {
+        border: '0px solid yellow',
+        width: '100%',
+        height: '110vh',
+        display: 'flex'
+    },
+    container1: {
+        width: '40%',
+        border: '0px solid blue'
+    },
+    Home: {
+        color: '#878787',
+        fontSize: '12px'
+    },
+    Book: {
+        fontSize: '14px',
+        fontWeight: '500',
+        marginLeft: '5px'
+    },
     smallImage: {
         width: '10%',
         height: '115px',
@@ -66,6 +85,11 @@ const useStyles = makeStyles({
         color: '#FFFFFF !important',
         background: '#333333 !important',
         textTransform: "none !important"
+    },
+    AddInWish: {
+        marginTop: '10px',
+        fontSize: '18px',
+        fontWeight: 'bold'
     },
     containDetails: {
         display: 'flex',
@@ -182,7 +206,186 @@ const useStyles = makeStyles({
         fontSize: '22px'
     },
     increment: {
+    },
+    submitbutton: {
+        border: '1px solid red',
+        width: '10px',
+        height: '25px',
+        borderRadius: '0px',
+        marginTop: '10px !important',
+        marginLeft: '560px !important'
+    },
+    SpanText: {
+        width: '516px',
+        height: '40px',
+        color: '#707070',
+        fontSize: '12px',
+        textAlign: 'start',
+        border: '0px solid red',
+    },
+
+    ['@media only screen and (min-width: 320px) and (max-width: 480px)']: {
+        footer: {
+            position: 'relatve',
+            bottom: '0px'
+        },
+        mainBox: {
+            border: '0px solid black',
+            display: 'flex',
+            flexDirection: 'column',
+        },
+        detailBox: {
+            border: '0px solid red',
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%'
+        },
+        ratingBox: {
+
+            width: '98%',
+            height: '25%',
+        },
+        container1: {
+            width: '100%',
+            height: '65%',
+            border: '0px solid blue'
+        },
+        Home: {
+            fontSize: '18px'
+        },
+        Book: {
+            fontSize: '18px',
+        },
+        AddInWish: {
+            marginTop: '-5px'
+        },
+        containDetails: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            border: '0px solid yellow',
+            width: '100%',
+            height: '120%'
+
+        },
+        submitbutton: {
+            marginTop: '10px !important',
+            marginLeft: '250px !important'
+        },
+        SpanText: {
+            width: '90%',
+            height: '50px',
+        },
+        rating: {
+            border: '0px solid yellow',
+            height: '240px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between'
+        }
+
+    },
+    ['@media only screen and (min-width: 489px) and (max-width: 789px)']: {
+        mainBox: {
+            border: '0px solid black',
+            display: 'flex',
+            flexDirection: 'column',
+        },
+        detailBox: {
+            border: '0px solid red',
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%'
+        },
+        ratingBox: {
+
+            width: '98%',
+            height: '25%',
+        },
+        container1: {
+            width: '100%',
+            height: '65%',
+            border: '0px solid blue'
+        },
+        Home: {
+            fontSize: '18px'
+        },
+        Book: {
+            fontSize: '18px',
+        },
+        AddInWish: {
+            marginTop: '10px'
+        },
+        containDetails: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            border: '0px solid yellow',
+            width: '100%',
+            height: '120%'
+
+        },
+        submitbutton: {
+            marginTop: '10px !important',
+            marginLeft: '380px !important'
+        },
+        SpanText: {
+            width: '90%',
+            height: '50px',
+        },
+        rating: {
+            border: '0px solid yellow',
+            height: '240px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between'
+        }
+    },
+    ['@media only screen and (min-width: 789px) and (max-width: 1024px)']: {
+        mainBox: {
+            border: '0px solid black',
+            width: '90vw'
+        },
+        container1: {
+            width: '95%',
+            height: '65%',
+            border: '0px solid blue'
+        },
+        Home: {
+            fontSize: '18px'
+        },
+        Book: {
+            fontSize: '18px',
+        },
+        AddInWish: {
+            marginTop: '0px'
+        },
+        containDetails: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            border: '0px solid yellow',
+            width: '100%',
+
+
+        },
+        submitbutton: {
+            marginTop: '10px !important',
+            marginLeft: '260px !important'
+        },
+        SpanText: {
+            width: '90%',
+            height: '50px',
+        },
+        rating: {
+            border: '0px solid yellow',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            marginTop: '15px'
+        }
     }
+
 })
 function BookDetails(props) {
     const classes = useStyles();
@@ -281,108 +484,107 @@ function BookDetails(props) {
         getWishListBooks()
     }
     return (
-        <div>
-            <Box style={{ border: '0px solid red', width: '100%', height: 'auto' }}>
-                <Box style={{ border: '0px solid green', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', height: '60px' }}>
-                    <Box style={{ border: '0px solid green', display: 'flex', flexDirection: 'row', width: '12%', alignItems: 'center' }}>
-                        <div style={{ color: '#878787', fontSize: '12px' }}>
-                            Home/
-                        </div>
-                        <div style={{ fontSize: '14px', fontWeight: '500', marginLeft: '5px' }}>
-                            Book
-                        </div>
+        <Box className={classes.mainBox}>
+            <Box style={{ border: '0px solid green', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', height: '60px' }}>
+                <Box style={{ border: '0px solid green', display: 'flex', flexDirection: 'row', width: '12%', alignItems: 'center' }}>
+                    <Box className={classes.Home} onClick={props.homePage}>
+                        Home/
+                    </Box>
+                    <Box className={classes.Book}>
+                        Book
                     </Box>
                 </Box>
-                <Box style={{ border: '0px solid red', width: '100%', height: '110vh', display: 'flex' }}>
-                    <Box style={{ width: '40%', border: '0px solid blue' }}>
-                        <Box style={{ width: '100%', border: '0px solid yellow', height: '500px', display: 'flex' }}>
-                            <Box className={classes.smallImage}>
-                                <Box className={classes.smallImage1}>
-                                    <img className={classes.smallpic} src={'image 11@2x.png'} />
-                                </Box>
-                                <Box className={classes.smallImage2}>
-                                    <img className={classes.smallpic} src={'image 46.png'} />
-                                </Box>
+            </Box>
+            <Box className={classes.detailBox}>
+                <Box className={classes.container1}>
+                    <Box style={{ width: '100%', border: '0px solid yellow', height: '500px', display: 'flex' }}>
+                        <Box className={classes.smallImage}>
+                            <Box className={classes.smallImage1}>
+                                <img className={classes.smallpic} src={'image 11@2x.png'} />
                             </Box>
-                            <Box style={{ border: '0px solid black', width: '75%', height: '93%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginLeft: '4px' }}>
-                                <Box style={{ width: '100%', border: '2px solid #D1D1D1', height: '400px' }}>
-                                    <img className={classes.imageMain} src={'image 11@2x.png'} />
-                                </Box>
-                                <Box className={classes.buttonBox}>
-                                    {
-
-                                        (toggleList.length != 0) ? <Box className={classes.counterButtons}>
-                                            <Button className={classes.decrement} style={{ color: '#DBDBDB' }} onClick={decreaseQ}><RemoveCircleOutlineOutlinedIcon fontSize="large" /></Button>
-                                            <Box className={classes.count}>{cardToggle}</Box>
-                                            <Button className={classes.increment} style={{ color: '#DBDBDB' }} onClick={increaseQ}><AddCircleOutlineOutlinedIcon fontSize="large" /></Button>
-                                        </Box> : <Button className={classes.buttonCart} onClick={addCard}>ADD TO BAG</Button>
-
-                                    }
-
-                                    {
-
-                                        (toggleWishList.length != 0) ? <Box style={{ marginTop: '10px', fontSize: '18px', fontWeight: 'bold' }}>Added in WishList</Box> : <Button className={classes.buttonwishList} variant='contained' onClick={addWishList}><FavoriteIcon sx={{ fontSize: 'medium', marginRight: '10px' }} variant='contained' />WISHLIST</Button>
-                                    }
-                                </Box>
+                            <Box className={classes.smallImage2}>
+                                <img className={classes.smallpic} src={'image 46.png'} />
                             </Box>
+                        </Box>
+                        <Box style={{ border: '0px solid black', width: '75%', height: '93%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginLeft: '4px' }}>
+                            <Box style={{ width: '100%', border: '2px solid #D1D1D1', height: '400px' }}>
+                                <img className={classes.imageMain} src={'image 11@2x.png'} />
+                            </Box>
+                            <Box className={classes.buttonBox}>
+                                {
 
+                                    (toggleList.length != 0) ? <Box className={classes.counterButtons}>
+                                        <Button className={classes.decrement} style={{ color: '#DBDBDB' }} onClick={decreaseQ}><RemoveCircleOutlineOutlinedIcon fontSize="large" /></Button>
+                                        <Box className={classes.count}>{cardToggle}</Box>
+                                        <Button className={classes.increment} style={{ color: '#DBDBDB' }} onClick={increaseQ}><AddCircleOutlineOutlinedIcon fontSize="large" /></Button>
+                                    </Box> : <Button className={classes.buttonCart} onClick={addCard}>ADD TO BAG</Button>
+
+                                }
+
+                                {
+
+                                    (toggleWishList.length != 0) ? <Box className={classes.AddInWish}>Added in WishList</Box> : <Button className={classes.buttonwishList} variant='contained' onClick={addWishList}><FavoriteIcon sx={{ fontSize: 'medium', marginRight: '10px' }} variant='contained' />WISHLIST</Button>
+                                }
+                            </Box>
+                        </Box>
+
+                    </Box>
+                </Box>
+                <Box className={classes.containDetails}>
+                    <Box className={classes.bookTitle}>
+                        {props.inputObj.bookName}
+                    </Box>
+                    <Box className={classes.bookAuthor}>
+                        {props.inputObj.author}
+                    </Box>
+                    <Box className={classes.bookRatings}>
+                        <Box className={classes.ratings}>
+                            <Box sx={{ fontSize: '14px', color: 'white' }}>4.5</Box>
+                            <StarIcon sx={{ width: '14px', height: '13px', marginLeft: '3px', color: 'white' }} />
+                        </Box>
+                        <Box className={classes.qty}>
+                            ({props.inputObj.quantity})
                         </Box>
                     </Box>
-                    <Box className={classes.containDetails}>
-                        <Box className={classes.bookTitle}>
-                            {props.inputObj.bookName}
+                    <Box className={classes.bookPrice}>
+                        <Box className={classes.discountPrice}>
+                            Rs.{props.inputObj.discountPrice
+                            }
                         </Box>
-                        <Box className={classes.bookAuthor}>
-                            {props.inputObj.author}
-                        </Box>
-                        <Box className={classes.bookRatings}>
-                            <Box className={classes.ratings}>
-                                <Box sx={{ fontSize: '14px', color: 'white' }}>4.5</Box>
-                                <StarIcon sx={{ width: '14px', height: '13px', marginLeft: '3px', color: 'white' }} />
-                            </Box>
-                            <Box className={classes.qty}>
-                                ({props.inputObj.quantity})
-                            </Box>
-                        </Box>
-                        <Box className={classes.bookPrice}>
-                            <Box className={classes.discountPrice}>
-                                Rs.{props.inputObj.discountPrice
-                                }
-                            </Box>
-                            <Box className={classes.mPrice}>
-                                Rs.{props.inputObj.price
-                                }
-                            </Box>
-
-                        </Box>
-                        <Divider sx={{ borderBottomWidth: 2, width: '100%', marginTop: '12px' }} />
-                        <Box style={{ height: '18%' }}>
-                            <Box className={classes.describtionBox}>
-                                <FiberManualRecordIcon style={{ fontSize: '10px', color: '#878787' }} />
-                                <Box className={classes.bookDescription}>
-                                    Book Detail
-                                </Box>
-                            </Box>
-                            <Box className={classes.description}>
-                                <span>{props.inputObj.description}</span>
-                            </Box>
+                        <Box className={classes.mPrice}>
+                            Rs.{props.inputObj.price
+                            }
                         </Box>
 
-                        <Divider sx={{ borderBottomWidth: 2, width: '100%', marginTop: '0px' }} />
-                        <Box style={{ width: '150px', height: '24px', border: '0px solid red', color: '#0A0102', fontWeight: '500', marginTop: '10px' }}>
-                            Customer Feedback
-                        </Box>
-                        <Box className={classes.ratingBox}>
-                            <Box style={{ margin: '15px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                                <Box style={{ fontSize: '12px', fontWeight: '500' }}>Overall rating</Box>
-                                <Rating name="no-value" value={null} style={{ marginTop: '6px' }} />
-                                <textarea placeholder="Write your review" minRows={2} style={{ marginTop: '10px', width: '100%', height: '50px' }} />
-                                <Button variant="contained" size="small" style={{ width: '10px', height: '25px', borderRadius: '0px', marginTop: '10px', marginLeft: '560px' }}>
-                                    Submit
-                                </Button>
+                    </Box>
+                    <Divider sx={{ borderBottomWidth: 2, width: '100%', marginTop: '12px' }} />
+                    <Box style={{ height: '18%' }}>
+                        <Box className={classes.describtionBox}>
+                            <FiberManualRecordIcon style={{ fontSize: '10px', color: '#878787' }} />
+                            <Box className={classes.bookDescription}>
+                                Book Detail
                             </Box>
                         </Box>
+                        <Box className={classes.description}>
+                            <span>{props.inputObj.description}</span>
+                        </Box>
+                    </Box>
 
+                    <Divider sx={{ borderBottomWidth: 2, width: '100%', marginTop: '0px' }} />
+                    <Box style={{ width: '150px', height: '24px', border: '0px solid red', color: '#0A0102', fontWeight: '500', marginTop: '10px' }}>
+                        Customer Feedback
+                    </Box>
+                    <Box className={classes.ratingBox}>
+                        <Box style={{ margin: '15px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                            <Box style={{ fontSize: '12px', fontWeight: '500' }}>Overall rating</Box>
+                            <Rating name="no-value" value={null} style={{ marginTop: '6px' }} />
+                            <textarea placeholder="Write your review" minRows={2} style={{ marginTop: '10px', width: '100%', height: '50px' }} />
+                            <Button variant="contained" size="small" className={classes.submitbutton}>
+                                Submit
+                            </Button>
+                        </Box>
+                    </Box>
+                    <Box className={classes.rating}>
                         <Box style={{ border: '0px solid red', width: '94%', height: '100px', display: 'flex', marginTop: '13px' }}>
                             <Box style={{
                                 width: '27px',
@@ -407,15 +609,7 @@ function BookDetails(props) {
                                     style={{ marginTop: '5px' }}
                                 />
 
-                                <span style={{
-                                    width: '516px',
-                                    height: '40px',
-                                    color: '#707070',
-                                    fontSize: '12px',
-                                    textAlign: 'start',
-                                    border: '0px solid red',
-
-                                }}>The following npm package, @mui/icons-material, includes the 2,100+ official Material Icons converted to SvgIcon components.</span>
+                                <span className={classes.SpanText}>The following npm package, @mui/icons-material, includes the 2,100+ official Material Icons converted to SvgIcon components.</span>
 
                             </Box>
 
@@ -444,15 +638,9 @@ function BookDetails(props) {
                                     style={{ marginTop: '5px' }}
                                 />
 
-                                <span style={{
-                                    width: '516px',
-                                    height: '40px',
-                                    color: '#707070',
-                                    fontSize: '12px',
-                                    textAlign: 'start',
-                                    border: '0px solid red',
+                                <span className={classes.SpanText}
 
-                                }}>The following npm package, @mui/icons-material, includes the 2,100+ official Material Icons converted to SvgIcon components.</span>
+                                >The following npm package, @mui/icons-material, includes the 2,100+ official Material Icons converted to SvgIcon components.</span>
 
                             </Box>
 
@@ -460,8 +648,9 @@ function BookDetails(props) {
                     </Box>
 
                 </Box>
+
             </Box>
-        </div >
+        </Box>
     )
 }
 export default BookDetails;

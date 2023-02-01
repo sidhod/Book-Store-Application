@@ -147,6 +147,119 @@ const useStyles = makeStyles({
         height: '100%',
         color: '##F5F5F5',
         textTransform: "none !important"
+    },
+    ['@media only screen and (min-width: 320px) and (max-width: 480px)']: {
+        signinpaper: {
+            width: '100vw',
+            height: '100vh',
+            position: 'relative',
+            top: '0px',
+            left: '0px',
+        },
+        email: {
+            border: '0px solid blue',
+            width: '95%',
+            height: '10%',
+            marginTop: '40px'
+        },
+        password: {
+            marginTop: '5px'
+        },
+        loginBox: {
+            border: '0px solid blue',
+            marginTop: '20px'
+        },
+        dividertext: {
+            border: '0px solid blue',
+            marginTop: '40px'
+        },
+        fandg: {
+            border: '0px solid blue',
+            marginTop: '40px'
+        },
+        text: {
+            fontSize: '15px'
+        },
+        forgotpassword: {
+            fontSize: '15px'
+        }
+
+
+    },
+    ['@media only screen and (min-width: 480px) and (max-width: 768px)']: {
+        signinpaper: {
+            width: '100vw',
+            height: '100vh',
+            position: 'relative',
+            top: '0px',
+            left: '0px',
+        },
+        email: {
+            border: '0px solid blue',
+            width: '95%',
+            height: '10%',
+            marginTop: '40px'
+        },
+        password: {
+            marginTop: '5px'
+        },
+        loginBox: {
+            border: '0px solid blue',
+            marginTop: '20px',
+            height: '50px',
+        },
+        dividertext: {
+            border: '0px solid blue',
+            marginTop: '40px'
+        },
+        fandg: {
+            border: '0px solid blue',
+            marginTop: '40px'
+        },
+        text: {
+            fontSize: '15px'
+        },
+        forgotpassword: {
+            fontSize: '15px'
+        }
+
+
+    },
+    ['@media only screen and (min-width: 789px) and (max-width: 1024px)']: {
+        signinpaper: {
+            width: "68vh",
+            height: '88vh',
+            position: 'relative',
+            top: '208px',
+            left: '48%',
+        }, email: {
+            border: '0px solid blue',
+            width: '95%',
+            height: '10%',
+            marginTop: '40px'
+        },
+        password: {
+            marginTop: '5px'
+        },
+        loginBox: {
+            border: '0px solid blue',
+            marginTop: '20px',
+            height: '50px',
+        },
+        dividertext: {
+            border: '0px solid blue',
+            marginTop: '40px'
+        },
+        fandg: {
+            border: '0px solid blue',
+            marginTop: '40px'
+        },
+        text: {
+            fontSize: '15px'
+        },
+        forgotpassword: {
+            fontSize: '15px'
+        }
     }
 
 });

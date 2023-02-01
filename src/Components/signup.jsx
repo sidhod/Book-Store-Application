@@ -3,6 +3,7 @@ import { useState } from "react";
 import { makeStyles } from '@mui/styles';
 import { Paper, Box, Button, TextField } from "@mui/material";
 import { registerApi } from "../services/userServices";
+import { useNavigate } from 'react-router-dom';
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 const firstnameRegex = /^[A-Z]{1}[a-z]{4,}$/;
@@ -158,10 +159,96 @@ const useStyles = makeStyles({
         height: '100%',
         color: '##F5F5F5',
         textTransform: "none !important"
+    },
+    ['@media only screen and (min-width: 320px) and (max-width: 480px)']: {
+        signinpaper: {
+            width: '100vw',
+            height: '100vh',
+            position: 'relative',
+            top: '0px',
+            left: '0px',
+        },
+        name: {
+            border: '0px solid red',
+            height: '10%',
+            marginTop: '60px'
+        },
+        password: {
+            border: '0px solid red',
+            height: '10%'
+        },
+        email: {
+            border: '0px solid red',
+            height: '10%'
+        },
+        loginBox: {
+            marginTop: '60px'
+        },
+        text: {
+            fontSize: '15px'
+        },
+    },
+    ['@media only screen and (min-width: 480px) and (max-width: 789px)']: {
+        signinpaper: {
+            width: '100vw',
+            height: '100vh',
+            position: 'relative',
+            top: '0px',
+            left: '0px',
+        },
+        name: {
+            border: '0px solid red',
+            height: '10%',
+            marginTop: '60px'
+        },
+        password: {
+            border: '0px solid red',
+            height: '10%'
+        },
+        email: {
+            border: '0px solid red',
+            height: '10%'
+        },
+        loginBox: {
+            marginTop: '60px',
+            height: '50px'
+        },
+        text: {
+            fontSize: '15px'
+        }
+    },
+    ['@media only screen and (min-width: 789px) and (max-width: 1024px)']: {
+        signinpaper: {
+            width: "68vh",
+            height: '88vh',
+            position: 'relative',
+            top: '208px',
+            left: '48%',
+        }, name: {
+            border: '0px solid red',
+            height: '10%',
+            marginTop: '60px'
+        },
+        password: {
+            border: '0px solid red',
+            height: '10%'
+        },
+        email: {
+            border: '0px solid red',
+            height: '10%'
+        },
+        loginBox: {
+            marginTop: '60px',
+            height: '50px'
+        },
+        text: {
+            fontSize: '15px'
+        }
     }
 
 });
 function Signup(props) {
+    const navigate = useNavigate()
     const classes = useStyles()
     const [registrationObj, setFirstLastNameObj] = useState({ firstName: "", email: "", password: "", mobileNumber: "" })
     const [regexObj, setRegexObj] = useState({ firstNameBorder: false, firstNameHelper: "", mobileNumberBorder: false, mobileNumberHelper: "", emailBorder: false, emailHelper: "", passwordBorder: false, passwordHelper: "" })
@@ -257,7 +344,9 @@ function Signup(props) {
         if (firstNameTest === true && mobileNumberTest === true && emailTest === true && passwordTest === true) {
             registerApi(registrationObj)
                 .then((reponse) => {
-                    console.log(reponse)
+                    console.log(reponse);
+                    props.signup();
+
                 })
                 .catch((error) => { console.log(error) });
         }

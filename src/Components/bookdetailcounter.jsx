@@ -26,28 +26,13 @@ const useStyles = makeStyles({
         fontSize: '22px'
     },
     increment: {
-    }
+    },
+    
 })
 
 const BookDetailsCounter = (props) => {
     const classes = useStyles();
     const [quantity, setquantity] = React.useState();
-    // const getquantity = () => {
-    //     let bookId = props.inputObj._id
-    //     getBookInCart(bookId).then(res => {
-    //         console.log(res);
-    //         setquantity(res.data.data.quantity)
-    //     }).catch(err => {
-    //         console.log(err)
-    //     })
-    // }
-    // const autoRefresh = () => {
-    //     getquantity()
-    // }
-
-    // useEffect(() => {
-    //     getquantity();
-    // }, [])
     const increaseQ = () => {
         let bookId = props.inputObj._id
         console.log("from booksummary to cart:", bookId)
